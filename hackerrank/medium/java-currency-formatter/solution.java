@@ -1,57 +1,48 @@
-import java.io.*;
-import java.math.*;
-import java.security.*;
-import java.text.*;
+
 import java.util.*;
-import java.util.concurrent.*;
-import java.util.regex.*;
-
-class Result {
-
-    /*
-     * Complete the 'findDay' function below.
-     *
-     * The function is expected to return a STRING.
-     * The function accepts following parameters:
-     *  1. INTEGER month
-     *  2. INTEGER day
-     *  3. INTEGER year
-     */
-
-    public static String findDay(int month, int day, int year) {
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(year, month - 1, day);
-        
-        String[] daysOfWeek = {
-            "SUNDAY", "MONDAY", "TUESDAY", "WEDNESDAY", 
-            "THURSDAY", "FRIDAY", "SATURDAY"
-        };
-        
-        int dayIndex = calendar.get(Calendar.DAY_OF_WEEK) - 1;
-        return daysOfWeek[dayIndex];
-    }
-
-}
+import java.text.*;
 
 public class Solution {
-    public static void main(String[] args) throws IOException {
-        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        double payment = sc.nextDouble();
 
-        String[] firstMultipleInput = bufferedReader.readLine().replaceAll("\\s+$", "").split(" ");
+        // US
+        NumberFormat us = NumberFormat.getCurrencyInstance(Locale.US);
 
-        int month = Integer.parseInt(firstMultipleInput[0]);
+        // India
+        DecimalFormat india = (DecimalFormat)
+            NumberFormat.getCurrencyInstance(new Locale("en", "IN"));
 
-        int day = Integer.parseInt(firstMultipleInput[1]);
+        DecimalFormatSymbols indiaSymbols = india.getDecimalFormatSymbols();
+        indiaSymbols.setCurrencySymbol("Rs.");
+        india.setDecimalFormatSymbols(indiaSymbols);
 
-        int year = Integer.parseInt(firstMultipleInput[2]);
+        // China
+        DecimalFormat china = (DecimalFormat)
+            NumberFormat.getCurrencyInstance(Locale.CHINA);
 
-        String res = Result.findDay(month, day, year);
+        DecimalFormatSymbols chinaSymbols = china.getDecimalFormatSymbols();
+        chinaSymbols.setCurrencySymbol("\uFFE5");
+        china.setDecimalFormatSymbols(chinaSymbols);
 
-        bufferedWriter.write(res);
-        bufferedWriter.newLine();
+        // France
+        DecimalFormat france = (DecimalFormat)
+            NumberFormat.getCurrencyInstance(Locale.FRANCE);
 
-        bufferedReader.close();
-        bufferedWriter.close();
+        france.applyPattern("#,##0.00 \u00A4");
+
+        String franceFormatted = france.format(payment);
+
+        // Replace narrow non-breaking space with non-breaking space
+        franceFormatted = franceFormatted.replace('\u202F', '\u00A0');
+
+        // Print results
+        System.out.println("US: " + us.format(payment));
+        System.out.println("India: " + india.format(payment));
+        System.out.println("China: " + china.format(payment));
+        System.out.println("France: " + franceFormatted);
+
+        sc.close();
     }
 }
