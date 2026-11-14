@@ -1,4 +1,4 @@
-# Java Datatypes
+# Java End-of-file
 
 ![Difficulty](https://img.shields.io/badge/Difficulty-Medium-yellow)
 
@@ -29,37 +29,23 @@ For each line, print the line number, followed by a single space, and then the l
 **Language:** Java  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-11-14T09:43:08.951Z  
+**Submitted:** 2026-11-14T09:55:41.625Z  
 
 ```java
 import java.io.*;
 import java.util.*;
 
-class Solution {
-    public static void main(String[] argh) {
+public class Solution {
+    public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        int t = sc.nextInt();
-
-        for (int i = 0; i < t; i++) {
-            try {
-                long x = sc.nextLong();
-                System.out.println(x + " can be fitted in:");
-                if (x >= Byte.MIN_VALUE && x <= Byte.MAX_VALUE) {
-                    System.out.println("* byte");
-                }
-                if (x >= Short.MIN_VALUE && x <= Short.MAX_VALUE) {
-                    System.out.println("* short");
-                }
-                if (x >= Integer.MIN_VALUE && x <= Integer.MAX_VALUE) {
-                    System.out.println("* int");
-                }
-                if (x >= Long.MIN_VALUE && x <= Long.MAX_VALUE) {
-                    System.out.println("* long");
-                }
-            } catch (Exception e) {
-                System.out.println(sc.next() + " can't be fitted anywhere.");
-            }
+        int lineNumber = 1;
+        
+        while (sc.hasNext()) {
+            String line = sc.nextLine();
+            System.out.println(lineNumber + " " + line);
+            lineNumber++;
         }
+        
         sc.close();
     }
 }
