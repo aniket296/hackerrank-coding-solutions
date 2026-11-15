@@ -1,24 +1,17 @@
 import java.io.*;
 import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
 
 public class Solution {
 
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        String A = sc.next();
-        String B = sc.next();
+        Scanner in = new Scanner(System.in);
+        String S = in.next();
+        int start = in.nextInt();
+        int end = in.nextInt();
         
-        System.out.println(A.length() + B.length());
-        
-        if (A.compareTo(B) > 0) {
-            System.out.println("Yes");
-        } else {
-            System.out.println("No");
-        }
-        
-        
-        String capitalizedA = A.substring(0, 1).toUpperCase() + A.substring(1);
-        String capitalizedB = B.substring(0, 1).toUpperCase() + B.substring(1);
-        System.out.println(capitalizedA + " " + capitalizedB);
+        System.out.println(S.substring(start, end));
     }
 }
