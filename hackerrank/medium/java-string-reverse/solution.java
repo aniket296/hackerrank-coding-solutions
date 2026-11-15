@@ -1,19 +1,19 @@
+import java.io.*;
+import java.util.*;
 
-public static String getSmallestAndLargest(String s, int k) {
-    String smallest = s.substring(0, k);
-    String largest = s.substring(0, k);
-    
-    for (int i = 0; i <= s.length() - k; i++) {
-        String sub = s.substring(i, i + k);
+public class Solution {
+
+    public static void main(String[] args) {
         
-        if (sub.compareTo(smallest) < 0) {
-            smallest = sub;
-        }
+        Scanner sc = new Scanner(System.in);
+        String A = sc.next();
         
-        if (sub.compareTo(largest) > 0) {
-            largest = sub;
+        String reversed = new StringBuilder(A).reverse().toString();
+        
+        if (A.equals(reversed)) {
+            System.out.println("Yes");
+        } else {
+            System.out.println("No");
         }
     }
-    
-    return smallest + "\n" + largest;
 }
