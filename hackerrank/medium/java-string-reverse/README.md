@@ -1,4 +1,4 @@
-# Java Substring Comparisons
+# Java String Reverse
 
 ![Difficulty](https://img.shields.io/badge/Difficulty-Medium-yellow)
 
@@ -25,27 +25,27 @@ Given a string $A$, print ``Yes`` if it is a palindrome, print ``No`` otherwise.
 **Language:** Java  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-11-15T14:16:32.463Z  
+**Submitted:** 2026-11-15T14:17:47.845Z  
 
 ```java
+import java.io.*;
+import java.util.*;
 
-public static String getSmallestAndLargest(String s, int k) {
-    String smallest = s.substring(0, k);
-    String largest = s.substring(0, k);
-    
-    for (int i = 0; i <= s.length() - k; i++) {
-        String sub = s.substring(i, i + k);
+public class Solution {
+
+    public static void main(String[] args) {
         
-        if (sub.compareTo(smallest) < 0) {
-            smallest = sub;
-        }
+        Scanner sc = new Scanner(System.in);
+        String A = sc.next();
         
-        if (sub.compareTo(largest) > 0) {
-            largest = sub;
+        String reversed = new StringBuilder(A).reverse().toString();
+        
+        if (A.equals(reversed)) {
+            System.out.println("Yes");
+        } else {
+            System.out.println("No");
         }
     }
-    
-    return smallest + "\n" + largest;
 }
 
 ```
