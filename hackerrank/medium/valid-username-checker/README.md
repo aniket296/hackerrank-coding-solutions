@@ -1,4 +1,4 @@
-# Java Regex 2 - Duplicate Words
+# Valid Username Regular Expression
 
 ![Difficulty](https://img.shields.io/badge/Difficulty-Medium-yellow)
 
@@ -42,40 +42,17 @@ For each of the usernames, the locked stub code prints `Valid` if the username i
 **Language:** Java  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-11-16T18:28:01.532Z  
+**Submitted:** 2026-11-16T18:31:43.081Z  
 
 ```java
-import java.util.Scanner;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
-public class DuplicateWords {
-
-    public static void main(String[] args) {
-
-        String regex = "\\b(\\w+)(?:\\W+\\1\\b)+";
-        Pattern p = Pattern.compile(regex, Pattern.CASE_INSENSITIVE);
-
-        Scanner in = new Scanner(System.in);
-        int numSentences = Integer.parseInt(in.nextLine());
-        
-        while (numSentences-- > 0) {
-            String input = in.nextLine();
-            
-            Matcher m = p.matcher(input);
-            
-            // Check for subsequences of input that match the compiled pattern
-            while (m.find()) {
-                input = input.replaceAll(m.group(), m.group(1));
-            }
-            
-            // Prints the modified sentence.
-            System.out.println(input);
-        }
-        
-        in.close();
-    }
+class UsernameValidator {
+    /*
+     * Write regular expression here.
+     */
+    public static final String regularExpression = "^[a-zA-Z][a-zA-Z0-9_]{7,29}$";
 }
+
 
 ```
 
