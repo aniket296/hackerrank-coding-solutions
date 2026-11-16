@@ -1,4 +1,4 @@
-# Java Anagrams
+# Java String Tokens
 
 ![Difficulty](https://img.shields.io/badge/Difficulty-Medium-yellow)
 
@@ -26,32 +26,39 @@ On the first line, print an integer, $n$, denoting the number of tokens in strin
 **Language:** Java  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-11-16T18:09:48.400Z  
+**Submitted:** 2026-11-16T18:12:52.453Z  
 
 ```java
+import java.io.*;
+import java.util.*;
 
-    static boolean isAnagram(String a, String b) {
-        if(a == null || b == null || a.length() != b.length()){
-            return false;
+public class Solution {
+
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        if (!scan.hasNextLine()) {
+            System.out.println(0);
+            scan.close();
+            return;
+        }
+        String s = scan.nextLine().trim();
+        
+        if (s.isEmpty()) {
+            System.out.println(0);
+            scan.close();
+            return;
         }
         
-        String strA = a.toLowerCase();
-        String strB = b.toLowerCase();
+        String[] tokens = s.split("[\\s!,?._'@]+");
         
-        int[] frequency = new int[26];
-        
-        for(int i=0; i< strA.length();i++){
-            frequency[strA.charAt(i)- 'a']++;
-            frequency[strB.charAt(i)- 'a']--;
+        System.out.println(tokens.length);
+        for (String token : tokens) {
+            System.out.println(token);
         }
         
-        for(int count : frequency){
-            if(count !=0){
-                return false;
-            }
-        }
-        return true;
+        scan.close();
     }
+}
 
 ```
 
