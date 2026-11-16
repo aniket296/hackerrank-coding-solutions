@@ -1,23 +1,30 @@
+import java.io.*;
+import java.util.*;
 
-    static boolean isAnagram(String a, String b) {
-        if(a == null || b == null || a.length() != b.length()){
-            return false;
+public class Solution {
+
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        if (!scan.hasNextLine()) {
+            System.out.println(0);
+            scan.close();
+            return;
+        }
+        String s = scan.nextLine().trim();
+        
+        if (s.isEmpty()) {
+            System.out.println(0);
+            scan.close();
+            return;
         }
         
-        String strA = a.toLowerCase();
-        String strB = b.toLowerCase();
+        String[] tokens = s.split("[\\s!,?._'@]+");
         
-        int[] frequency = new int[26];
-        
-        for(int i=0; i< strA.length();i++){
-            frequency[strA.charAt(i)- 'a']++;
-            frequency[strB.charAt(i)- 'a']--;
+        System.out.println(tokens.length);
+        for (String token : tokens) {
+            System.out.println(token);
         }
         
-        for(int count : frequency){
-            if(count !=0){
-                return false;
-            }
-        }
-        return true;
+        scan.close();
     }
+}
