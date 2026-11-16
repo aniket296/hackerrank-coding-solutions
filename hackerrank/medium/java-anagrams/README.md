@@ -1,4 +1,4 @@
-# Java String Reverse
+# Java Anagrams
 
 ![Difficulty](https://img.shields.io/badge/Difficulty-Medium-yellow)
 
@@ -37,28 +37,32 @@ The second line contains a string $b$.
 **Language:** Java  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-11-15T14:17:59.706Z  
+**Submitted:** 2026-11-16T18:09:41.689Z  
 
 ```java
-import java.io.*;
-import java.util.*;
 
-public class Solution {
-
-    public static void main(String[] args) {
-        
-        Scanner sc = new Scanner(System.in);
-        String A = sc.next();
-        
-        String reversed = new StringBuilder(A).reverse().toString();
-        
-        if (A.equals(reversed)) {
-            System.out.println("Yes");
-        } else {
-            System.out.println("No");
+    static boolean isAnagram(String a, String b) {
+        if(a == null || b == null || a.length() != b.length()){
+            return false;
         }
+        
+        String strA = a.toLowerCase();
+        String strB = b.toLowerCase();
+        
+        int[] frequency = new int[26];
+        
+        for(int i=0; i< strA.length();i++){
+            frequency[strA.charAt(i)- 'a']++;
+            frequency[strB.charAt(i)- 'a']--;
+        }
+        
+        for(int count : frequency){
+            if(count !=0){
+                return false;
+            }
+        }
+        return true;
     }
-}
 
 ```
 
