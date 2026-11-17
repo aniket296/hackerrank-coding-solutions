@@ -1,4 +1,4 @@
-# Tag Content Extractor
+# Java Method Overriding
 
 ![Difficulty](https://img.shields.io/badge/Difficulty-Medium-yellow)
 
@@ -57,41 +57,15 @@ When executed, your completed code should print the following:
 **Language:** Java  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-11-17T17:12:10.266Z  
+**Submitted:** 2026-11-17T17:15:37.598Z  
 
 ```java
-import java.io.*;
-import java.util.*;
-import java.text.*;
-import java.math.*;
-import java.util.regex.*;
 
-public class Solution {
-    public static void main(String[] args) {
-        Scanner in = new Scanner(System.in);
-        int testCases = Integer.parseInt(in.nextLine());
 
-        String regex = "<(.+)>([^<]+)</\\1>";
-        Pattern pattern = Pattern.compile(regex);
-        
-        while (testCases > 0) {
-            String line = in.nextLine();
-            Matcher matcher = pattern.matcher(line);
-            
-            boolean matchFound = false;
-            while (matcher.find()) {
-                System.out.println(matcher.group(2));
-                matchFound = true;
-            }
-            
-            if (!matchFound) {
-                System.out.println("None");
-            }
-            
-            testCases--;
-        }
+    void getNumberOfTeamMembers() {
+        System.out.println("Each team has 11 players in " + getName());
     }
-}
+
 
 ```
 
