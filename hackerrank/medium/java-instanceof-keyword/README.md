@@ -1,4 +1,4 @@
-# Java Method Overriding 2 (Super Keyword)
+# Java Instanceof keyword
 
 ![Difficulty](https://img.shields.io/badge/Difficulty-Medium-yellow)
 
@@ -47,13 +47,47 @@ To restore the original code in the editor, click on the top left icon in the ed
 **Language:** Java  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-11-17T17:21:16.265Z  
+**Submitted:** 2026-11-17T17:32:48.152Z  
 
 ```java
+import java.util.*;
 
 
-		String temp=super.define_me(); //Fix this line
+class Student{}
+class Rockstar{   }
+class Hacker{}
 
+
+public class InstanceOFTutorial{
+	
+   static String count(ArrayList mylist){
+      int a = 0,b = 0,c = 0;
+      for(int i = 0; i < mylist.size(); i++){
+         Object element = mylist.get(i);
+         if(element instanceof Student)
+            a++;
+         if(element instanceof Rockstar)
+            b++;
+         if(element instanceof Hacker)
+            c++;
+      }
+      String ret = Integer.toString(a)+" "+ Integer.toString(b)+" "+ Integer.toString(c);
+      return ret;
+   }
+
+   public static void main(String []args){
+      ArrayList mylist = new ArrayList();
+      Scanner sc = new Scanner(System.in);
+      int t = sc.nextInt();
+      for(int i=0; i<t; i++){
+         String s=sc.next();
+         if(s.equals("Student"))mylist.add(new Student());
+         if(s.equals("Rockstar"))mylist.add(new Rockstar());
+         if(s.equals("Hacker"))mylist.add(new Hacker());
+      }
+      System.out.println(count(mylist));
+   }
+}
 
 ```
 
