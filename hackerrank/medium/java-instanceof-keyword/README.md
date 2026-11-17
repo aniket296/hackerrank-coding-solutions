@@ -1,4 +1,4 @@
-# Java Currency Formatter
+# Java Method Overriding 2 (Super Keyword)
 
 ![Difficulty](https://img.shields.io/badge/Difficulty-Medium-yellow)
 
@@ -47,57 +47,13 @@ To restore the original code in the editor, click on the top left icon in the ed
 **Language:** Java  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-11-14T10:28:00.710Z  
+**Submitted:** 2026-11-17T17:21:16.265Z  
 
 ```java
 
-import java.util.*;
-import java.text.*;
 
-public class Solution {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        double payment = sc.nextDouble();
+		String temp=super.define_me(); //Fix this line
 
-        // US
-        NumberFormat us = NumberFormat.getCurrencyInstance(Locale.US);
-
-        // India
-        DecimalFormat india = (DecimalFormat)
-            NumberFormat.getCurrencyInstance(new Locale("en", "IN"));
-
-        DecimalFormatSymbols indiaSymbols = india.getDecimalFormatSymbols();
-        indiaSymbols.setCurrencySymbol("Rs.");
-        india.setDecimalFormatSymbols(indiaSymbols);
-
-        // China
-        DecimalFormat china = (DecimalFormat)
-            NumberFormat.getCurrencyInstance(Locale.CHINA);
-
-        DecimalFormatSymbols chinaSymbols = china.getDecimalFormatSymbols();
-        chinaSymbols.setCurrencySymbol("\uFFE5");
-        china.setDecimalFormatSymbols(chinaSymbols);
-
-        // France
-        DecimalFormat france = (DecimalFormat)
-            NumberFormat.getCurrencyInstance(Locale.FRANCE);
-
-        france.applyPattern("#,##0.00 \u00A4");
-
-        String franceFormatted = france.format(payment);
-
-        // Replace narrow non-breaking space with non-breaking space
-        franceFormatted = franceFormatted.replace('\u202F', '\u00A0');
-
-        // Print results
-        System.out.println("US: " + us.format(payment));
-        System.out.println("India: " + india.format(payment));
-        System.out.println("China: " + china.format(payment));
-        System.out.println("France: " + franceFormatted);
-
-        sc.close();
-    }
-}
 
 ```
 
