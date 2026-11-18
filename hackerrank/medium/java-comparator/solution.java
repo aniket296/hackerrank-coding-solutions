@@ -1,27 +1,41 @@
-import java.io.*;
-import java.math.*;
-import java.security.*;
-import java.text.*;
 import java.util.*;
-import java.util.concurrent.*;
-import java.util.function.*;
-import java.util.regex.*;
-import java.util.stream.*;
-import static java.util.stream.Collectors.joining;
-import static java.util.stream.Collectors.toList;
+
+class Player {
+    String name;
+    int score;
+
+    Player(String name, int score) {
+        this.name = name;
+        this.score = score;
+    }
+}
+
+class Checker implements Comparator<Player> {
+    public int compare(Player a, Player b) {
+        if (b.score != a.score) {
+            return Integer.compare(b.score, a.score);
+        }
+        return a.name.compareTo(b.name);
+    }
+}
 
 public class Solution {
-    public static void main(String[] args) throws IOException {
-        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-        String n = bufferedReader.readLine();
-        bufferedReader.close();
 
-        BigInteger number = new BigInteger(n);
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        int n = scan.nextInt();
 
-        if (number.isProbablePrime(10)) {
-            System.out.println("prime");
-        } else {
-            System.out.println("not prime");
+        Player[] player = new Player[n];
+        Checker checker = new Checker();
+
+        for (int i = 0; i < n; i++) {
+            player[i] = new Player(scan.next(), scan.nextInt());
+        }
+        scan.close();
+
+        Arrays.sort(player, checker);
+        for (int i = 0; i < player.length; i++) {
+            System.out.printf("%s %s\n", player[i].name, player[i].score);
         }
     }
 }
