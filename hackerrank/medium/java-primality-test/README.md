@@ -1,4 +1,4 @@
-# Java BigDecimal
+# Java Primality Test
 
 ![Difficulty](https://img.shields.io/badge/Difficulty-Medium-yellow)
 
@@ -29,31 +29,33 @@ If $n$ is a prime number, print ``prime``; otherwise, print ``not prime``.
 **Language:** Java  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-11-18T07:53:35.138Z  
+**Submitted:** 2026-11-18T07:54:35.099Z  
 
 ```java
-import java.math.BigDecimal;
+import java.io.*;
+import java.math.*;
+import java.security.*;
+import java.text.*;
 import java.util.*;
+import java.util.concurrent.*;
+import java.util.function.*;
+import java.util.regex.*;
+import java.util.stream.*;
+import static java.util.stream.Collectors.joining;
+import static java.util.stream.Collectors.toList;
 
 public class Solution {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt();
-        String[] s = new String[n];
-        for (int i = 0; i < n; i++) {
-            s[i] = sc.next();
-        }
-        sc.close();
-        Arrays.sort(s, new Comparator<String>() {
-            public int compare(String str1, String str2) {
-                BigDecimal bd1 = new BigDecimal(str1);
-                BigDecimal bd2 = new BigDecimal(str2);
-                return bd2.compareTo(bd1);
-            }
-        });
+    public static void main(String[] args) throws IOException {
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        String n = bufferedReader.readLine();
+        bufferedReader.close();
 
-        for (int i = 0; i < n; i++) {
-            System.out.println(s[i]);
+        BigInteger number = new BigInteger(n);
+
+        if (number.isProbablePrime(10)) {
+            System.out.println("prime");
+        } else {
+            System.out.println("not prime");
         }
     }
 }
