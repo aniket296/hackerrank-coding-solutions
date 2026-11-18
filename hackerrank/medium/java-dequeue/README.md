@@ -1,4 +1,4 @@
-# Java Sort
+# Java Dequeue
 
 ![Difficulty](https://img.shields.io/badge/Difficulty-Medium-yellow)
 
@@ -41,68 +41,40 @@ Print the *maximum* number of unique integers among all possible contiguous suba
 **Language:** Java  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-11-18T08:03:34.497Z  
+**Submitted:** 2026-11-18T08:05:55.275Z  
 
 ```java
 import java.util.*;
 
-class Student {
-    private int id;
-    private String fname;
-    private double cgpa;
-
-    public Student(int id, String fname, double cgpa) {
-        super();
-        this.id = id;
-        this.fname = fname;
-        this.cgpa = cgpa;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public String getFname() {
-        return fname;
-    }
-
-    public double getCgpa() {
-        return cgpa;
-    }
-}
-
-public class Solution {
+public class test {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
-        int testCases = Integer.parseInt(in.nextLine());
+        Deque<Integer> deque = new ArrayDeque<>();
+        HashMap<Integer, Integer> map = new HashMap<>();
+        
+        int n = in.nextInt();
+        int m = in.nextInt();
+        int maxUnique = 0;
 
-        List<Student> studentList = new ArrayList<Student>();
-        while (testCases > 0) {
-            int id = in.nextInt();
-            String fname = in.next();
-            double cgpa = in.nextDouble();
+        for (int i = 0; i < n; i++) {
+            int num = in.nextInt();
+            
+            deque.addLast(num);
+            map.put(num, map.getOrDefault(num, 0) + 1);
 
-            Student student = new Student(id, fname, cgpa);
-            studentList.add(student);
+            if (deque.size() == m) {
+                maxUnique = Math.max(maxUnique, map.size());
 
-            testCases--;
-        }
-
-        Collections.sort(studentList, new Comparator<Student>() {
-            public int compare(Student s1, Student s2) {
-                if (Double.compare(s2.getCgpa(), s1.getCgpa()) != 0) {
-                    return Double.compare(s2.getCgpa(), s1.getCgpa());
-                } else if (!s1.getFname().equals(s2.getFname())) {
-                    return s1.getFname().compareTo(s2.getFname());
-                } else {
-                    return Integer.compare(s1.getId(), s2.getId());
+                int removed = deque.removeFirst();
+                map.put(removed, map.get(removed) - 1);
+                if (map.get(removed) == 0) {
+                    map.remove(removed);
                 }
             }
-        });
-
-        for (Student st : studentList) {
-            System.out.println(st.getFname());
         }
+        
+        System.out.println(maxUnique);
+        in.close();
     }
 }
 
