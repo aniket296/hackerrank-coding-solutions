@@ -1,4 +1,4 @@
-# Java Arraylist
+# Java 1D Array (Part 2)
 
 ![Difficulty](https://img.shields.io/badge/Difficulty-Medium-yellow)
 
@@ -49,45 +49,47 @@ The $2 \cdot q$ subsequent lines describe each query over two lines:
 **Language:** Java  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-11-24T10:56:48.450Z  
+**Submitted:** 2026-11-24T10:58:22.193Z  
 
 ```java
-import java.io.*;
 import java.util.*;
 
 public class Solution {
+
+    public static boolean canWin(int leap, int[] game) {
+        return isSolvable(leap, game, 0);
+    }
+
+    private static boolean isSolvable(int leap, int[] game, int i) {
+        if (i >= game.length) {
+            return true;
+        }
+        if (i < 0 || game[i] != 0) {
+            return false;
+        }
+
+        game[i] = 1;
+
+        return isSolvable(leap, game, i + leap)
+                || isSolvable(leap, game, i + 1)
+                || isSolvable(leap, game, i - 1);
+    }
+
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt();
+        Scanner scan = new Scanner(System.in);
+        int q = scan.nextInt();
+        while (q-- > 0) {
+            int n = scan.nextInt();
+            int leap = scan.nextInt();
 
-        ArrayList<ArrayList<Integer>> lines = new ArrayList<ArrayList<Integer>>(n);
-
-        for (int i = 0; i < n; i++) {
-            int d = sc.nextInt();
-            ArrayList<Integer> row = new ArrayList<Integer>(d);
-            for (int j = 0; j < d; j++) {
-                row.add(sc.nextInt());
+            int[] game = new int[n];
+            for (int i = 0; i < n; i++) {
+                game[i] = scan.nextInt();
             }
-            lines.add(row);
+
+            System.out.println((canWin(leap, game)) ? "YES" : "NO");
         }
-
-        int q = sc.nextInt();
-
-        for (int k = 0; k < q; k++) {
-            int x = sc.nextInt();
-            int y = sc.nextInt();
-
-            if (x >= 1 && x <= lines.size()) {
-                ArrayList<Integer> row = lines.get(x - 1);
-                if (y >= 1 && y <= row.size()) {
-                    System.out.println(row.get(y - 1));
-                    continue;
-                }
-            }
-            System.out.println("ERROR!");
-        }
-
-        sc.close();
+        scan.close();
     }
 }
 
