@@ -1,37 +1,31 @@
-import java.io.*;
+//Complete this code or write your own from scratch
 import java.util.*;
+import java.io.*;
 
-public class Solution {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt();
+class Solution {
+    public static void main(String[] argh) {
+        Scanner in = new Scanner(System.in);
+        int n = in.nextInt();
+        in.nextLine();
 
-        List<Integer> list = new ArrayList<Integer>(n);
+        Map<String, Integer> phoneBook = new HashMap<String, Integer>();
+
         for (int i = 0; i < n; i++) {
-            list.add(sc.nextInt());
+            String name = in.nextLine();
+            int phone = in.nextInt();
+            in.nextLine();
+            phoneBook.put(name, phone);
         }
 
-        int q = sc.nextInt();
-        for (int i = 0; i < q; i++) {
-            String queryType = sc.next();
-            if ("Insert".equals(queryType)) {
-                int index = sc.nextInt();
-                int value = sc.nextInt();
-                list.add(index, value);
-            } else if ("Delete".equals(queryType)) {
-                int index = sc.nextInt();
-                list.remove(index);
+        while (in.hasNext()) {
+            String s = in.nextLine();
+            if (phoneBook.containsKey(s)) {
+                System.out.println(s + "=" + phoneBook.get(s));
+            } else {
+                System.out.println("Not found");
             }
         }
 
-        sc.close();
-
-        for (int i = 0; i < list.size(); i++) {
-            if (i > 0) {
-                System.out.print(" ");
-            }
-            System.out.print(list.get(i));
-        }
-        System.out.println();
+        in.close();
     }
 }
