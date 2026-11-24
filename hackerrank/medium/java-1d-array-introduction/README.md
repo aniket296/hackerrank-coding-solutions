@@ -1,4 +1,4 @@
-# Java BigInteger
+# Java 1D Array
 
 ![Difficulty](https://img.shields.io/badge/Difficulty-Medium-yellow)
 
@@ -53,24 +53,14 @@ You are not responsible for printing any output to stdout. Locked code in the ed
 **Language:** Java  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-11-24T10:48:08.384Z  
+**Submitted:** 2026-11-24T10:51:07.974Z  
 
 ```java
-import java.io.*;
-import java.util.*;
-import java.math.BigInteger;
 
-public class Solution {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        BigInteger a = sc.nextBigInteger();
-        BigInteger b = sc.nextBigInteger();
-        sc.close();
-
-        System.out.println(a.add(b));
-        System.out.println(a.multiply(b));
-    }
-}
+        int[] a = new int[n];
+        for(int i=0;i<n;i++){
+            a[i]=scan.nextInt();
+        }
 
 ```
 
