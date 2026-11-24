@@ -1,4 +1,4 @@
-# Java Map
+# Java Stack
 
 ![Difficulty](https://img.shields.io/badge/Difficulty-Medium-yellow)
 
@@ -38,38 +38,46 @@ For each case, print 'true' if the string is balanced, 'false' otherwise.
 **Language:** Java  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-11-24T11:03:34.883Z  
+**Submitted:** 2026-11-24T11:05:19.002Z  
 
 ```java
-//Complete this code or write your own from scratch
 import java.util.*;
-import java.io.*;
 
 class Solution {
+
     public static void main(String[] argh) {
-        Scanner in = new Scanner(System.in);
-        int n = in.nextInt();
-        in.nextLine();
+        Scanner sc = new Scanner(System.in);
 
-        Map<String, Integer> phoneBook = new HashMap<String, Integer>();
-
-        for (int i = 0; i < n; i++) {
-            String name = in.nextLine();
-            int phone = in.nextInt();
-            in.nextLine();
-            phoneBook.put(name, phone);
+        while (sc.hasNext()) {
+            String input = sc.next();
+            System.out.println(isBalanced(input));
         }
 
-        while (in.hasNext()) {
-            String s = in.nextLine();
-            if (phoneBook.containsKey(s)) {
-                System.out.println(s + "=" + phoneBook.get(s));
+        sc.close();
+    }
+
+    private static boolean isBalanced(String s) {
+        Deque<Character> stack = new ArrayDeque<Character>();
+
+        for (int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+
+            if (c == '(' || c == '{' || c == '[') {
+                stack.push(c);
             } else {
-                System.out.println("Not found");
+                if (stack.isEmpty()) {
+                    return false;
+                }
+                char top = stack.pop();
+                if ((c == ')' && top != '(')
+                        || (c == '}' && top != '{')
+                        || (c == ']' && top != '[')) {
+                    return false;
+                }
             }
         }
 
-        in.close();
+        return stack.isEmpty();
     }
 }
 
