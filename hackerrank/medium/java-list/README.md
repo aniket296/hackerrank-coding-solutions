@@ -1,4 +1,4 @@
-# Java 1D Array (Part 2)
+# Java List
 
 ![Difficulty](https://img.shields.io/badge/Difficulty-Medium-yellow)
 
@@ -45,47 +45,44 @@ Print the updated list $L$ as a single line of space-separated integers.
 **Language:** Java  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-11-24T10:58:47.100Z  
+**Submitted:** 2026-11-24T11:00:47.959Z  
 
 ```java
+import java.io.*;
 import java.util.*;
 
 public class Solution {
-
-    public static boolean canWin(int leap, int[] game) {
-        return isSolvable(leap, game, 0);
-    }
-
-    private static boolean isSolvable(int leap, int[] game, int i) {
-        if (i >= game.length) {
-            return true;
-        }
-        if (i < 0 || game[i] != 0) {
-            return false;
-        }
-
-        game[i] = 1;
-
-        return isSolvable(leap, game, i + leap)
-                || isSolvable(leap, game, i + 1)
-                || isSolvable(leap, game, i - 1);
-    }
-
     public static void main(String[] args) {
-        Scanner scan = new Scanner(System.in);
-        int q = scan.nextInt();
-        while (q-- > 0) {
-            int n = scan.nextInt();
-            int leap = scan.nextInt();
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
 
-            int[] game = new int[n];
-            for (int i = 0; i < n; i++) {
-                game[i] = scan.nextInt();
-            }
-
-            System.out.println((canWin(leap, game)) ? "YES" : "NO");
+        List<Integer> list = new ArrayList<Integer>(n);
+        for (int i = 0; i < n; i++) {
+            list.add(sc.nextInt());
         }
-        scan.close();
+
+        int q = sc.nextInt();
+        for (int i = 0; i < q; i++) {
+            String queryType = sc.next();
+            if ("Insert".equals(queryType)) {
+                int index = sc.nextInt();
+                int value = sc.nextInt();
+                list.add(index, value);
+            } else if ("Delete".equals(queryType)) {
+                int index = sc.nextInt();
+                list.remove(index);
+            }
+        }
+
+        sc.close();
+
+        for (int i = 0; i < list.size(); i++) {
+            if (i > 0) {
+                System.out.print(" ");
+            }
+            System.out.print(list.get(i));
+        }
+        System.out.println();
     }
 }
 
